@@ -7,7 +7,11 @@ class Button extends React.Component {
   };
 
   render() {
-    return <button onClick={this.handleClick}>+{this.props.incrementValue}</button>;
+    return (
+      <button className="btn btn-outline-secondary" onClick={this.handleClick}>
+        +{this.props.incrementValue}
+      </button>
+    );
   }
 }
 

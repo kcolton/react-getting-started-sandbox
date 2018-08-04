@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "keywords": [],
-  "main": "src/1-intro/index.js",
+  "main": "src/3-play-nine-interface/index.js",
   "dependencies": {
     "axios": "0.18.0",
+    "lodash-es": "latest",
     "react": "16.3.2",
     "react-dom": "16.3.2",
     "react-scripts": "1.1.4"

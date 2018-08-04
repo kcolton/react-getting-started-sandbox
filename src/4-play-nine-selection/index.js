@@ -1,15 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import range from "lodash-es/range";
 
 import "./game.css";
 
 const Stars = props => {
-  const numberOfStars = 1 + Math.floor(Math.random() * 9);
-
   return (
     <div className="col-5">
-      {range(0, numberOfStars).map((number, i) => <i key={i} className="fa fa-star" />)}
+      <i className="fa fa-star" />
+      <i className="fa fa-star" />
+      <i className="fa fa-star" />
+      <i className="fa fa-star" />
+      <i className="fa fa-star" />
     </div>
   );
 };
@@ -23,23 +24,20 @@ const Button = props => {
 };
 
 const Answer = props => {
-  return (
-    <div className="col-5">
-      <span>5</span>
-      <span>6</span>
-    </div>
-  );
+  return <div className="col-5">...</div>;
 };
 
 const Numbers = props => {
   return (
     <div className="card text-center">
-      <div>{Numbers.list.map((number, i) => <span key={i}>{number}</span>)}</div>
+      <div>
+        <span>1</span>
+        <span className="selected">2</span>
+        <span className="used">3</span>
+      </div>
     </div>
   );
 };
-
-Numbers.list = range(1, 10);
 
 class Game extends React.Component {
   render() {
