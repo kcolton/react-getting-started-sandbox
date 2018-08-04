@@ -38,7 +38,6 @@ const Numbers = props => {
     </div>
   );
 };
-
 Numbers.list = range(1, 10);
 
 class Game extends React.Component {
