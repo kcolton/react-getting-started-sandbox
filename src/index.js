@@ -1,8 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-// import Button from "./Button";
-
 import "./styles.css";
 
 class Button extends React.Component {
@@ -18,7 +16,6 @@ class Button extends React.Component {
 }
 
 // add a result component using a simple function component since it has no private mutable state
-
 function Result(props) {
   return <div>{props.counter}</div>;
 }
@@ -46,5 +43,4 @@ class App extends React.Component {
   }
 }
 
-const rootElement = document.getElementById("root");
-ReactDOM.render(<App />, rootElement);
+ReactDOM.render(<App />, document.getElementById("root"));
