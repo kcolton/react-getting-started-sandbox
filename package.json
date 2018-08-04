@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "keywords": [],
-  "main": "src/4-play-nine-selection/index.js",
+  "main": "src/5-play-nine-complete/index.js",
   "dependencies": {
     "axios": "0.18.0",
     "lodash-es": "latest",
