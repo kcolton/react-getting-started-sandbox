@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import axios from "axios";
 
 import "./styles.css";
 
@@ -18,13 +19,23 @@ function Card(props) {
 }
 
 function CardList(props) {
-  return <div>{props.cards.map(card => <Card {...card} />)}</div>;
+  return <div>{props.cards.map(card => <Card key={card.id} {...card} />)}</div>;
 }
 
 class Form extends React.Component {
+  state = { userName: "" };
+
   handleSubmit = event => {
     event.preventDefault();
-    console.log("Event: Form submitted", this.userNameInput.value);
+    console.log("Event: Form submitted", this.state.userName);
+
+    axios
+      .get(`https://api.github.com/users/${this.state.userName}`)
+      .then(resp => {
+        console.log(resp);
+        this.props.onSubmit(resp.data);
+        this.setState({ userName: "" });
+      });
   };
 
   render() {
@@ -33,7 +44,8 @@ class Form extends React.Component {
         <input
           type="text"
           placeholder="Github Username"
-          ref={input => (this.userNameInput = input)}
+          value={this.state.userName}
+          onChange={event => this.setState({ userName: event.target.value })}
           required
         />
         <button type="submit">Add card</button>
@@ -44,24 +56,19 @@ class Form extends React.Component {
 
 class App extends React.Component {
   state = {
-    cards: [
-      {
-        name: "Paul O’Shannessy",
-        avatar_url: "https://avatars1.githubusercontent.com/u/8445?v=4",
-        company: "Facebook"
-      },
-      {
-        name: "Ken Colton",
-        avatar_url: "https://avatars1.githubusercontent.com/u/390961?v=4",
-        company: "Grubhub"
-      }
-    ]
+    cards: []
+  };
+
+  addNewCard = cardInfo => {
+    this.setState(prevState => ({
+      cards: prevState.cards.concat(cardInfo)
+    }));
   };
 
   render() {
     return (
       <div>
-        <Form />
+        <Form onSubmit={this.addNewCard} />
         <CardList cards={this.state.cards} />
       </div>
     );
