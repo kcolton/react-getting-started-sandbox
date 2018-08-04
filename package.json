@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "keywords": [],
-  "main": "src/index-github-cards.js",
+  "main": "src/1-intro/index.js",
   "dependencies": {
     "axios": "0.18.0",
     "react": "16.3.2",

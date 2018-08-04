@@ -2,16 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
 
-import "./styles.css";
-
 function Card(props) {
   return (
     <div style={{ margin: "1em" }}>
       <img width="75" src={props.avatar_url} alt="avatar" />
       <div className="info" style={{ display: "inline-block", marginLeft: 10 }}>
-        <div style={{ fontSize: "1.25em", fontWeight: "bold" }}>
-          {props.name}
-        </div>
+        <div style={{ fontSize: "1.25em", fontWeight: "bold" }}>{props.name}</div>
         <div>{props.company}</div>
       </div>
     </div>
@@ -29,13 +25,11 @@ class Form extends React.Component {
     event.preventDefault();
     console.log("Event: Form submitted", this.state.userName);
 
-    axios
-      .get(`https://api.github.com/users/${this.state.userName}`)
-      .then(resp => {
-        console.log(resp);
-        this.props.onSubmit(resp.data);
-        this.setState({ userName: "" });
-      });
+    axios.get(`https://api.github.com/users/${this.state.userName}`).then(resp => {
+      console.log(resp);
+      this.props.onSubmit(resp.data);
+      this.setState({ userName: "" });
+    });
   };
 
   render() {
