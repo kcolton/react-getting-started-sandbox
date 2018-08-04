@@ -18,24 +18,30 @@ function Card(props) {
 }
 
 function CardList(props) {
-  return (
-    <div>
-      <Card
-        name="Paul O’Shannessy"
-        avatar_url="https://avatars1.githubusercontent.com/u/8445?v=4"
-        company="Facebook"
-      />
-    </div>
-  );
+  return <div>{props.cards.map(card => <Card {...card} />)}</div>;
 }
+
+let data = [
+  {
+    name: "Paul O’Shannessy",
+    avatar_url: "https://avatars1.githubusercontent.com/u/8445?v=4",
+    company: "Facebook"
+  },
+  {
+    name: "Ken Colton",
+    avatar_url: "https://avatars1.githubusercontent.com/u/390961?v=4",
+    company: "Grubhub"
+  }
+];
 
 class App extends React.Component {
   render() {
     return (
       <div>
-        <CardList />
+        <CardList cards={data} />
       </div>
     );
   }
 }
+
 ReactDOM.render(<App />, document.getElementById("root"));
