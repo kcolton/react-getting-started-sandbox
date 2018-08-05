@@ -1,7 +1,7 @@
 {
-  "name": "new",
+  "name": "play-9-react-getting-started",
   "version": "1.0.0",
-  "description": "",
+  "description": "Following along React.js: Getting Started by Samer Buna on Pluralsight: https://app.pluralsight.com/library/courses/react-js-getting-started/table-of-contents",
   "keywords": [],
   "main": "src/5-play-nine-complete/index.js",
   "dependencies": {

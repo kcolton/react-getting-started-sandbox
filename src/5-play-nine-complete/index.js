@@ -6,7 +6,7 @@ import "./game.css";
 
 const Stars = props => {
   return (
-    <div className="col-5 stars">
+    <div className="col-sm-5 stars">
       {range(0, props.numberOfStars).map((number, i) => (
         <i key={i} className="fa fa-star stars__star" />
       ))}
@@ -22,6 +22,8 @@ const Button = props => {
       button = (
         <button className="btn btn-success" onClick={props.acceptAnswer}>
           <i className="fa fa-check" />
+          <br />
+          <small>next</small>
         </button>
       );
       break;
@@ -29,6 +31,8 @@ const Button = props => {
       button = (
         <button className="btn btn-danger">
           <i className="fa fa-times" />
+          <br />
+          <small>wrong</small>
         </button>
       );
       break;
@@ -39,14 +43,15 @@ const Button = props => {
           disabled={props.selectedNumbers.length === 0}
           onClick={props.checkAnswer}
         >
-          =
+          =<br />
+          <small>check</small>
         </button>
       );
       break;
   }
 
   return (
-    <div className="col-2 text-center">
+    <div className="col-sm-2 text-center">
       {button}
       <br />
       <br />
@@ -56,6 +61,8 @@ const Button = props => {
         disabled={props.redraws === 0}
       >
         <i className="fa fa-sync" /> {props.redraws}
+        <br />
+        <small>reshuffle</small>
       </button>
     </div>
   );
@@ -63,7 +70,7 @@ const Button = props => {
 
 const Answer = props => {
   return (
-    <div className="col-5">
+    <div className="col-sm-5">
       {props.selectedNumbers.map((number, i) => (
         <span key={i} onClick={() => props.unselectNumber(number)}>
           {number}
@@ -84,7 +91,8 @@ const Numbers = props => {
   }
 
   return (
-    <div className="card text-center">
+    <div className="text-center">
+      <hr />
       <div>
         {Numbers.list.map((number, i) => (
           <span
@@ -96,6 +104,16 @@ const Numbers = props => {
           </span>
         ))}
       </div>
+      <small className="text-muted">
+        Select numbers that add up to the count of stars above. Example:{" "}
+        <i className="fa fa-star" />
+        <i className="fa fa-star" />
+        <i className="fa fa-star" />
+        <i className="fa fa-star" />
+        <i className="fa fa-star" /> → 5 or 3,2 or 4,1<br />
+        Win by using all your numbers. Careful though! Run out of your 5 Reshuffles{" "}
+        <i className="fa fa-sync" /> and you're a loser.
+      </small>
     </div>
   );
 };
@@ -196,10 +214,10 @@ class Game extends React.Component {
       console.log("updated done status:", prevState);
 
       if (prevState.usedNumbers.length === 9) {
-        return { doneStatus: "Done. Nice!" };
+        return { doneStatus: "Well Played." };
       }
       if (prevState.redraws === 0 && !this.possibleSolutions(prevState)) {
-        return { doneStatus: "Game Over!" };
+        return { doneStatus: "GG. Loser." };
       }
     });
   };
